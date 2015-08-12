@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Last topics</h2>
+
+        {% for topic in topics %}
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="POST" action="{% url 'topics:vote' topic.id %}?next={{ request.path }}" style="display: inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="vote" value="up">
+                        <input type="submit" class="btn btn-sm btn-link" value="+">
+                    </form>
+                    <span class="label label-default">{{ topic.rating }}</span>
+                    <form method="POST" action="{% url 'topics:vote' topic.id %}?next={{ request.path }}" style="display: inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="vote" value="down">
+                        <input type="submit" class="btn btn-sm btn-link" value="-">
+                    </form>
+                    <a href="{{ topic.url }}" target="_blank">{{ topic.title }}</a>
+                    {% if topic.rating > 3 %}
+                        <span class="label label-success">trending</span>
+                    {% endif %}
+                    <br/>
+                    by {{ topic.user }} at {{ topic.date_created }}
+                    |
+                    <a href="{{ topic.get_absolute_url }}">
+                        {% if topic.comments.exists %}
+                            comments: {{ topic.comments.count }}
+                        {% else %}
+                            comment
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <br/>
+        {% endfor %}
+    </div>
+{% endblock content %}

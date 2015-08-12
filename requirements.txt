@@ -1,0 +1,14 @@
+Django
+Pillow
+psycopg2
+raven
+#uWSGI
+gunicorn
+django-flat-theme
+-e git+https://github.com/jezdez/django-configurations.git#egg=django-configurations
+django-toolbelt
+
+django_compressor
+
+django-braces
+python-social-auth

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Register - {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-sm-4 col-sm-offset-4">
+            <h3>Please, register</h3>
+
+            <form class="form-signin" method="POST">
+                {% csrf_token %}
+                <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                    {{ form.username.label_tag }}
+                    {% if form.username.errors %}
+                        <span class="help-block text-danger">{{ form.username.errors.as_text }}</span>
+                    {% endif %}
+                    <input type="text"
+                           class="form-control"
+                           name="{{ form.username.name }}"
+                           id="{{ form.username.id_for_label }}"
+                           required
+                           autofocus
+                           placeholder="Enter username"
+                           value="{{ form.username.value|default:"" }}">
+                </div>
+                <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                    {{ form.email.label_tag }}
+                    {% if form.email.errors %}
+                        <span class="help-block text-danger">{{ form.email.errors.as_text }}</span>
+                    {% endif %}
+                    <input type="email"
+                           class="form-control"
+                           name="{{ form.email.name }}"
+                           id="{{ form.email.id_for_label }}"
+                           required
+                           placeholder="Enter email"
+                           value="{{ form.email.value|default:"" }}">
+                </div>
+                <div class="form-group {% if form.password1.errors %}has-error{% endif %}">
+                    {{ form.password1.label_tag }}
+                    {% if form.password1.errors %}
+                        <span class="help-block text-danger">{{ form.password1.errors.as_text }}</span>
+                    {% endif %}
+                    <input type="password"
+                           class="form-control"
+                           name="{{ form.password1.name }}"
+                           id="{{ form.password1.id_for_label }}"
+                           required
+                           placeholder="Enter password">
+                </div>
+                <div class="form-group {% if form.password2.errors %}has-error{% endif %}">
+                    {{ form.password2.label_tag }}
+                    {% if form.password2.errors %}
+                        <span class="help-block text-danger">{{ form.email.password2.as_text }}</span>
+                    {% endif %}
+                    <input type="password"
+                           class="form-control"
+                           name="{{ form.password2.name }}"
+                           id="{{ form.password2.id_for_label }}"
+                           required
+                           placeholder="Enter confirmation">
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

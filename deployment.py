@@ -5,7 +5,7 @@ from jetee.service.services.redis import RedisService
 
 from jetee.project.projects import DjangoProject
 from jetee.common.user_configuration import AppConfiguration
-from jetee.processes import UWSGIProcess, CronProcess, CronJob, AbstractProcess
+from jetee.processes import UWSGIProcess
 
 
 class BaseConfiguration(AppConfiguration):
@@ -18,7 +18,7 @@ class BaseConfiguration(AppConfiguration):
     def get_primary_service(self):
         app_service = PrimaryService(
             project=DjangoProject(
-                cvs_repo_url=u'git@github.com:amureki/pyshorts.git',
+                cvs_repo_url=u'git@github.com:amureki/shorts.git',
                 cvs_repo_branch=self.branch,
                 apt_packages=[u'libjpeg-dev', ],
                 web_process=UWSGIProcess(u'project/wsgi.py'),

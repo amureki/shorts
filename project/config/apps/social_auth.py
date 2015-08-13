@@ -3,7 +3,7 @@ class SocialAuthSettings(object):
         'social.backends.facebook.FacebookOAuth2',
         'social.backends.twitter.TwitterOAuth',
         'social.backends.vk.VKOAuth2',
-        'social.backends.github.GithubMemberOAuth2',
+        'social.backends.github.GithubOAuth2',
 
         'django.contrib.auth.backends.ModelBackend'
     )

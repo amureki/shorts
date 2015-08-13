@@ -16,6 +16,7 @@ urlpatterns = patterns(
 # 3rd-party apps
 urlpatterns += patterns(
     '',
+    url(r'^u/social/', include(u'social.apps.django_app.urls', namespace=u'social'))
 )
 
 # Project apps

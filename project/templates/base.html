@@ -19,8 +19,8 @@
     <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
 
     {% compress css %}
-        <!-- Bootstrap core CSS -->
-        <link href="{% get_static_prefix %}css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% get_static_prefix %}css/flatly.min.css" rel="stylesheet">
+        <link href="{% get_static_prefix %}css/font-awesome.min.css" rel="stylesheet">
         <link href="{% get_static_prefix %}css/main.css" rel="stylesheet">
     {% endcompress %}
 
@@ -51,7 +51,7 @@
 
 {% block metrics %}
     {% if not debug %}
-        {# include analytics/metrics #}
+        {% include 'includes/metrics.html' %}
     {% endif %}
 {% endblock metrics %}
 

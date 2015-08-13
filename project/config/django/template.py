@@ -12,7 +12,10 @@ class DevelopmentTemplateSettings(object):
             'django.core.context_processors.i18n',
             'django.core.context_processors.debug',
             'django.core.context_processors.media',
-            'django.core.context_processors.request'
+            'django.core.context_processors.request',
+
+            'social.apps.django_app.context_processors.backends',
+            'social.apps.django_app.context_processors.login_redirect',
         )
         return template_processors
 

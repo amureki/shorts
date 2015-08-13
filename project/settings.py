@@ -5,13 +5,15 @@ from django.core.exceptions import ImproperlyConfigured
 
 from configurations import Settings
 
-from config.django.database import DevelopmentDatabaseSettings, StagingDatabaseSettings, ProductionDatabaseSettings
+from config.django.database import DevelopmentDatabaseSettings, StagingDatabaseSettings
 from config.django.email import EmailSettings
 from config.django.i18n import LocaleSettings
 from config.django.media import DevelopmentMediaSettings, StagingMediaSettings, ProductionMediaSettings
 from config.django.middleware import MiddlewareSetings
 from config.django.logging import LoggingSettings
 from config.django.template import DevelopmentTemplateSettings, StagingTemplateSettings, ProductionTemplateSettings
+
+from config.apps.social_auth import SocialAuthSettings
 
 try:
     from config.django.secrets import SecretSettings
@@ -20,6 +22,7 @@ except ImportError:
 
 
 class BaseSettings(EmailSettings, LocaleSettings, LoggingSettings, MiddlewareSetings,
+                   SocialAuthSettings,
                    SecretSettings,
                    Settings):
     PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
@@ -27,7 +30,7 @@ class BaseSettings(EmailSettings, LocaleSettings, LoggingSettings, MiddlewareSet
 
     ADMINS = MANAGERS = []
 
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = [u'shorts.amureki.me']
 
     SITE_ID = 1
 
@@ -50,6 +53,7 @@ class BaseSettings(EmailSettings, LocaleSettings, LoggingSettings, MiddlewareSet
         'django',
 
         'compressor',
+        'social.apps.django_app.default',
 
         'comments',
         'topics',
@@ -70,9 +74,4 @@ class Development(DevelopmentDatabaseSettings, DevelopmentMediaSettings, Develop
 
 class Staging(StagingDatabaseSettings, StagingMediaSettings, StagingTemplateSettings,
               BaseSettings):
-    pass
-
-
-class Production(ProductionDatabaseSettings, ProductionMediaSettings, ProductionTemplateSettings,
-                 BaseSettings):
     pass

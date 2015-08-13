@@ -11,6 +11,15 @@
                     Auth error
                 </div>
             {% endif %}
+            <div>
+                via social
+                <br>
+                <a class="" href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-2x fa-facebook-official"></i></a>
+                <a class="" href="{% url 'social:begin' 'vk-oauth2' %}"><i class="fa fa-2x fa-vk"></i></a>
+                <a class="" href="{% url 'social:begin' 'twitter' %}"><i class="fa fa-2x fa-twitter-square"></i></a>
+                <a class="" href="{% url 'social:begin' 'github' %}"><i class="fa fa-2x fa-github-square"></i></a>
+            </div>
+            or via email
             <form class="form-signin" method="POST">
                 {% csrf_token %}
                 <div class="form-group {% if form.username.errors %}has-error{% endif %}">

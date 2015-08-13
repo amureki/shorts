@@ -74,4 +74,6 @@ class Development(DevelopmentDatabaseSettings, DevelopmentMediaSettings, Develop
 
 class Staging(StagingDatabaseSettings, StagingMediaSettings, StagingTemplateSettings,
               BaseSettings):
-    pass
+    RAVEN_CONFIG = {
+        u'dsn': u'http://068ddbee5ba3477095f2b76fc2ffb1bd:ff054123cf114895af6c7e69b163415a@sentry-07.redeploy.ru/68',
+    }

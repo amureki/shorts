@@ -2,12 +2,10 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, logout, get_user_model
-from django.core import signing
-from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404, render
-from django.views.generic import FormView, View, CreateView, TemplateView
+from django.shortcuts import get_object_or_404
+from django.views.generic import FormView, View, CreateView
 
 from users.forms import LoginForm, RegistrationForm, AcquireEmailForm
 from utils.email import send_activation_email

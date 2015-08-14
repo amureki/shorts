@@ -1,2 +1,2 @@
-some kind of project
+yet another links aggregator
 ======

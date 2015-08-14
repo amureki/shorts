@@ -65,6 +65,7 @@ class TopicCommentView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         comment = form.save(commit=False)
+        comment.topic_id = self.kwargs.get(u'pk')
         comment.user = self.request.user
         comment.save()
         return HttpResponseRedirect(comment.topic.get_absolute_url())

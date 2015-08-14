@@ -63,9 +63,7 @@
                                     name="{{ comment_form.text.name }}"
                                     id="{{ comment_form.text.id_for_label }}"
                                     cols="10" rows="5"
-                                    required>
-                                {{ comment_form.text.value|default:"" }}
-                            </textarea>
+                                    required>{{ comment_form.text.value|default:"" }}</textarea>
                         </div>
                         <input type="submit" class="btn btn-default" value="Submit">
                     </form>

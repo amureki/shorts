@@ -13,17 +13,13 @@ class SocialAuthSettings(object):
         'social.pipeline.social_auth.social_uid',
         'social.pipeline.social_auth.auth_allowed',
         'social.pipeline.social_auth.social_user',
-
-        'project.apps.users.pipelines.require_email',
-
         'social.pipeline.user.get_username',
-        # 'social.pipeline.social_auth.associate_by_email',
+        'social.pipeline.social_auth.associate_by_email',
         'social.pipeline.user.create_user',
         'social.pipeline.social_auth.associate_user',
         'social.pipeline.social_auth.load_extra_data',
         'social.pipeline.user.user_details',
         'social.pipeline.mail.mail_validation',
-
     )
 
     SOCIAL_AUTH_LOGIN_REDIRECT_URL = u'/'

@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         validators=[
             validators.RegexValidator(re.compile('^[\w.-]+$'), u'Enter a valid username.', u'invalid')
         ])
-    email = models.EmailField(u'email address', max_length=255, unique=True)
+    email = models.EmailField(u'email address', max_length=255, blank=True, null=True)
     is_active = models.BooleanField(
         u'active', default=False,
         help_text=u'Designates whether this user should be treated as '
@@ -52,7 +52,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(u'date joined', default=timezone.now)
 
     USERNAME_FIELD = u'username'
-    REQUIRED_FIELDS = [u'email']
 
     objects = UserManager()
 

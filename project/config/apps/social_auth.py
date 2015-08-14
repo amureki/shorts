@@ -19,6 +19,7 @@ class SocialAuthSettings(object):
         'social.pipeline.social_auth.associate_user',
         'social.pipeline.social_auth.load_extra_data',
         'social.pipeline.user.user_details',
+        'social.pipeline.mail.mail_validation',
     )
 
     SOCIAL_AUTH_LOGIN_REDIRECT_URL = u'/'

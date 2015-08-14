@@ -31,6 +31,12 @@ class RegistrationForm(UserCreationForm):
         fields = (u'username', u'email')
 
 
+class AcquireEmailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (u'email',)
+
+
 class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField(
         label=u'Password',

@@ -2,12 +2,14 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, logout, get_user_model
+from django.core import signing
+from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
-from django.views.generic import FormView, View, CreateView
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import FormView, View, CreateView, TemplateView
 
-from users.forms import LoginForm, RegistrationForm
+from users.forms import LoginForm, RegistrationForm, AcquireEmailForm
 from utils.email import send_activation_email
 from utils.tokens import UserActivationTokenGenerator
 
@@ -83,3 +85,20 @@ class ActivationView(View):
         else:
             messages.error(request, u'There was something wrong, please contact support.')
         return HttpResponseRedirect(self.get_redirect_url())
+
+
+class AcquireEmailView(FormView):
+    template_name = u'users/acquire_email.html'
+    form_class = AcquireEmailForm
+
+    def form_valid(self, form):
+
+        try:
+            user = User.objects.get(id=self.kwargs.get(u'user_id', 0))
+        except User.DoesNotExist:
+            raise Http404
+        user.email = form.cleaned_data.get(u'email')
+        user.save()
+        send_activation_email(user)
+        messages.info(self.request, u'We have sent you an email so you can activate your account!')
+        return HttpResponseRedirect(self.get_success_url())
